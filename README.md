@@ -15,6 +15,7 @@
       - [Visualization](#visualization)
   - [Usage Example](#usage-example)
   - [Best Practices](#best-practices)
+  - [References](#references)
 
 ## Overview
 ![Combined Analysis Graph](/images/combined_graph.png)
@@ -76,3 +77,6 @@ The Mahalanobis distance is a multi-dimensional generalization of measuring how 
 2. Consider the context of your testing program when interpreting outliers
 3. Document any outliers removed from analysis for quality control purposes
 4. Regularly validate the filter parameters against your specific testing requirements
+
+## References
+- [ChatGPT Reference](https://chatgpt.com/share/672615e8-7b9c-8007-be59-7e6c98e387d9)
