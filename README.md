@@ -18,13 +18,14 @@
   - [References](#references)
 
 ## Overview
+This Jupyter notebook implements a statistical analysis tool for identifying outliers in paired compressive strength test data using the Mahalanobis distance method. The implementation is specifically designed for analyzing paired samples in materials testing, following standards such as ASTM C39, and provides robust statistical validation of test results through automated outlier detection.
+
 ![Combined Analysis Graph](/images/combined_graph.png)
 *Figure 1: Combined visualization showing (a) original scatter plot with paired data points, (b) histogram of Mahalanobis distances with three-sigma threshold, and (c) filtered results highlighting inliers and outliers with confidence ellipse*
 
 
-This Jupyter notebook implements a statistical analysis tool for identifying outliers in paired compressive strength test data using the Mahalanobis distance method. The implementation is specifically designed for analyzing paired samples in materials testing, following standards such as ASTM C39, and provides robust statistical validation of test results through automated outlier detection.
-
 This video explains the theory behind Mahalanobis Distances
+
 [![YouTube video](https://img.youtube.com/vi/-F1f5mefSi0/0.jpg)](https://www.youtube.com/watch?v=-F1f5mefSi0)
 
 ## Purpose
