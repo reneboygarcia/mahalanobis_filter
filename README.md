@@ -80,4 +80,4 @@ The Mahalanobis distance is a multi-dimensional generalization of measuring how 
 4. Regularly validate the filter parameters against your specific testing requirements
 
 ## References
-- [ChatGPT Reference](https://chatgpt.com/share/672615e8-7b9c-8007-be59-7e6c98e387d9)
+- [ChatGPT Reference](https://chatgpt.com/share/67262cf6-0d04-8007-8e75-56fe155a0fbd)
