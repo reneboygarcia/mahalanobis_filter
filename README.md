@@ -1,72 +1,78 @@
-# 🎯 Mahalanobis Outlier Detective
+# Compressive Strength Analysis Using Mahalanobis Distance Filter
 
-Elegantly identify outliers in your paired sample data using the sophisticated Mahalanobis distance metric. Perfect for quality control, experimental validation, and catching those sneaky data points that just don't belong.
+## Table of Contents
+- [Compressive Strength Analysis Using Mahalanobis Distance Filter](#compressive-strength-analysis-using-mahalanobis-distance-filter)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Purpose](#purpose)
+  - [Technical Background](#technical-background)
+    - [Key Features](#key-features)
+  - [Code Structure](#code-structure)
+    - [Classes](#classes)
+      - [`MahalanobisFilter`](#mahalanobisfilter)
+    - [Functions](#functions)
+      - [Data Processing](#data-processing)
+      - [Visualization](#visualization)
+  - [Usage Example](#usage-example)
+  - [Best Practices](#best-practices)
 
-## ✨ Features
-
-- **Robust Outlier Detection**: Implements Mahalanobis distance for multivariate outlier detection
-- **Beautiful Visualizations**: Creates three insightful plots to understand your data:
-  - Original data scatter plot
-  - Distance histogram with critical threshold
-  - Filtered results with regression line and reference means
-- **Flexible Processing**: Handles paired samples with missing values gracefully
-- **Statistical Rigor**: Uses chi-square distribution for proper statistical significance testing
-
-## 🚀 Quick Start
-
-```python
-from mahalanobis_filter import MahalanobisFilter
-
-# Load your paired sample data
-data = pd.read_csv('your_data.csv')
-processed_data = process_data(data)
-
-# Initialize and run the filter
-filter_obj = MahalanobisFilter(alpha=0.05)
-filter_obj.fit(processed_data)
-inliers, outliers = filter_obj.filter(processed_data)
-
-# Visualize the results
-create_plots(processed_data, inliers, outliers)
-```
-
-## 📊 Example Output
-
-The visualization suite produces three plots:
-![Three Graphs](images/combined_graph.png)
-
-1. **Original Data**: Raw scatter plot of your paired samples
-2. **Distance Analysis**: Histogram of Mahalanobis distances with critical threshold
-3. **Filtered Results**: Inliers (blue) and outliers (red) with regression line and mean references
-
-## 🔧 Parameters
-
-- `alpha`: Significance level for outlier detection (default: 0.05)
-- Input data should have columns: "Sample 1" and "Sample 2"
-
-## 📈 Use Cases
-
-- Quality control in manufacturing
-- Experimental data validation
-- Paired sample analysis
-- Statistical process control
-
-## 🤓 Math Behind the Magic
-
-The Mahalanobis distance is calculated as:
-```
-d = √[(x - μ)ᵀ Σ⁻¹ (x - μ)]
-```
-where:
-- x is the data point
-- μ is the mean vector
-- Σ⁻¹ is the inverse covariance matrix
-
-## 📝 Requirements
-
-- numpy
-- pandas
-- matplotlib
-- scipy
+## Overview
+![Combined Analysis Graph](/images/combined_graph.png)
+*Figure 1: Combined visualization showing (a) original scatter plot with paired data points, (b) histogram of Mahalanobis distances with three-sigma threshold, and (c) filtered results highlighting inliers and outliers with confidence ellipse*
 
 
+This Jupyter notebook implements a statistical analysis tool for identifying outliers in paired compressive strength test data using the Mahalanobis distance method. The implementation is specifically designed for analyzing paired samples in materials testing, following standards such as ASTM C39, and provides robust statistical validation of test results through automated outlier detection.
+
+This video explains the theory behind Mahalanobis Distances
+[![YouTube video](https://img.youtube.com/vi/-F1f5mefSi0/0.jpg)](https://www.youtube.com/watch?v=-F1f5mefSi0)
+
+## Purpose
+In materials testing, particularly with concrete specimens, we often need to evaluate whether paired test results are statistically consistent. This tool helps identify potential outliers that may indicate:
+- Testing equipment issues
+- Specimen preparation problems
+- Material inconsistencies
+- Data recording errors
+
+## Technical Background
+The Mahalanobis distance is a multi-dimensional generalization of measuring how many standard deviations away a point is from the mean of a distribution. Unlike simple threshold methods, it accounts for the correlation between variables and the shape of the data distribution.
+
+### Key Features
+- Implements a robust Mahalanobis distance-based outlier detection
+- Uses a three-sigma threshold (99.7% confidence interval)
+- Provides visualization tools for data analysis
+- Handles paired sample data typical in materials testing
+
+## Code Structure
+
+### Classes
+#### `MahalanobisFilter`
+- **Purpose**: Core class for outlier detection
+- **Key Methods**:
+  - `fit()`: Calculates mean and inverse covariance matrix
+  - `mahalanobis_distance()`: Computes distance for individual points
+  - `filter()`: Separates data into inliers and outliers
+
+### Functions
+#### Data Processing
+- `process_data()`: Handles data preparation and cleaning
+  - Extracts paired samples
+  - Removes null values
+  - Creates a structured DataFrame
+
+#### Visualization
+- `plot_ellipse()`: Creates statistical confidence ellipses
+- `create_plots()`: Generates three analysis plots:
+  1. Original scatter plot of paired data
+  2. Histogram of Mahalanobis distances
+  3. Filtered results with three-sigma ellipse and regression line
+
+## Usage Example
+- Pandas
+- Matplotlib
+- SciPy
+
+## Best Practices
+1. Always inspect the visualizations to confirm the automated filtering makes practical sense
+2. Consider the context of your testing program when interpreting outliers
+3. Document any outliers removed from analysis for quality control purposes
+4. Regularly validate the filter parameters against your specific testing requirements
