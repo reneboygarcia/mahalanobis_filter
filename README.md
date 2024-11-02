@@ -33,7 +33,7 @@ create_plots(processed_data, inliers, outliers)
 ## 📊 Example Output
 
 The visualization suite produces three plots:
-![Three Graphs](images/three_graph.png)
+![Three Graphs](images/combined_graph.png)
 
 1. **Original Data**: Raw scatter plot of your paired samples
 2. **Distance Analysis**: Histogram of Mahalanobis distances with critical threshold
