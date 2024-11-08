@@ -52,3 +52,6 @@ dask-worker-space/
 # VCS
 .git/
 .hg/
+
+# IDE
+.cursorrules
