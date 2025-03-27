@@ -18,11 +18,14 @@
     - [Dash Dashboard](#dash-dashboard)
   - [Usage Example](#usage-example)
   - [Installation](#installation)
+    - [Development Setup](#development-setup)
+    - [Using the Makefile](#using-the-makefile)
+    - [Package Installation](#package-installation)
   - [Best Practices](#best-practices)
   - [References](#references)
 
 ## Overview
-This Jupyter notebook implements a statistical analysis tool for identifying outliers in paired compressive strength test data using the Mahalanobis distance method. The implementation is specifically designed for analyzing paired samples in materials testing, following standards such as ASTM C39, and provides robust statistical validation of test results through automated outlier detection.
+This project implements a statistical analysis tool for identifying outliers in paired compressive strength test data using the Mahalanobis distance method. The implementation is specifically designed for analyzing paired samples in materials testing, following standards such as ASTM C39, and provides robust statistical validation of test results through automated outlier detection.
 
 ![Combined Analysis Graph](/images/combined_graph.png)
 *Figure 1: Combined visualization showing (a) original scatter plot with paired data points, (b) histogram of Mahalanobis distances with three-sigma threshold, and (c) filtered results highlighting inliers and outliers with confidence ellipse*
@@ -49,6 +52,8 @@ The Mahalanobis distance is a multi-dimensional generalization of measuring how 
 - Handles paired sample data typical in materials testing
 - Interactive visualizations with Plotly Express
 - Web-based dashboard with Dash for real-time analysis
+- Installable as a Python package
+- Command-line interface for easy deployment
 
 ## Code Structure
 
@@ -77,7 +82,7 @@ The Mahalanobis distance is a multi-dimensional generalization of measuring how 
 ## Interactive Visualization with Plotly and Dash
 
 ### Plotly Express Implementation
-The project now includes a Jupyter notebook (`mahalanobis_filter_plotly.ipynb`) that demonstrates how to use Plotly Express for creating interactive visualizations:
+The project includes a Jupyter notebook (`mahalanobis_filter_plotly.ipynb`) that demonstrates how to use Plotly Express for creating interactive visualizations:
 
 - **2D Scatter Plots**: Interactive scatter plots with hover information showing Mahalanobis distances and sample details
 - **3D Visualization**: 3D scatter plot for visualizing all three samples simultaneously
@@ -96,11 +101,19 @@ A web-based interactive dashboard (`mahalanobis_filter_dash.py`) has been implem
 
 To run the dashboard:
 ```bash
-python mahalanobis_filter_dash.py
+# Using the package entry point after installation
+mahalanobis-dashboard
+
+# Or using the Makefile
+make run
+
+# Or directly with Python
+python -m mahalanobis_filter.mahalanobis_filter_dash
 ```
 Then open your web browser and navigate to: http://127.0.0.1:8050/
 
 ## Usage Example
+Dependencies:
 - Pandas
 - Matplotlib
 - SciPy
@@ -108,9 +121,82 @@ Then open your web browser and navigate to: http://127.0.0.1:8050/
 - Dash
 
 ## Installation
-To install the required dependencies, run:
+
+### Development Setup
+To set up a virtual environment and install the required dependencies:
+
 ```bash
+# Create a virtual environment
+python -m venv venv
+
+# Activate the virtual environment
+## On macOS/Linux
+source venv/bin/activate
+## On Windows
+# venv\Scripts\activate
+
+# Install from requirements.txt
 pip install -r requirements.txt
+
+# Or install the package in development mode
+pip install -e .
+```
+
+### Using the Makefile
+The project includes a Makefile with several useful commands:
+
+```bash
+# Create virtual environment
+make venv
+
+# Show available commands
+make help
+
+# Install production dependencies
+make install
+
+# Install development dependencies
+make dev
+
+# Run the application
+make run
+
+# Run tests
+make test
+
+# Format code
+make format
+
+# Run linting
+make lint
+
+# Clean build artifacts
+make clean
+
+# Build Python package
+make build-package
+
+# Publish to PyPI
+make publish
+```
+
+### Package Installation
+The project can be installed as a Python package:
+
+```bash
+# Install from local directory
+pip install .
+
+# Install from GitHub (if published)
+pip install git+https://github.com/reneboygarcia/mahalanobis_filter.git
+
+# Install from PyPI (if published)
+pip install mahalanobis-filter
+```
+
+After installation, you can run the dashboard using the command:
+```bash
+mahalanobis-dashboard
 ```
 
 ## Best Practices
